@@ -1,16 +1,29 @@
 import { Controller, Get, Post, HttpStatus } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
+import { Response, Param, Dependencies, Body } from '@nestjs/common';
+import { DatapointsService } from "../components/datapoint.service";
 
 @Controller('datapoint')
 export class DatapointController {
+
+    constructor(private datapointsService: DatapointsService) {
+        
+    }
+
     @Get()
-    getAllDatapoints(req: Request, res: Response, next: NextFunction) {
-        res.status(HttpStatus.OK).json([{id: 1, name: 'Test' }]);
+    async getAllDatapoints(@Response() res) {
+        const datapoints = await this.datapointsService.getAllDatapoints(); 
+        res.status(HttpStatus.OK).json(datapoints);
     }
 
     @Get('/:id')
-    getDatapoint() {}
+    async getDatapoint(@Response() res, @Param('id') id) {
+        const datapoint = await this.datapointsService.getDatapoint(id);
+        res.status(HttpStatus.OK).json(datapoint);
+    }
 
     @Post()
-    addDatapoint() {}
+    async addDatapoint(@Response() res, @Body('datapoint') datapoint) {
+        const msg = await this.datapointsService.addDatapoint(datapoint);
+        res.status(HttpStatus.CREATED).json(msg);
+    }
 }

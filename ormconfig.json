@@ -1,0 +1,28 @@
+[
+  {
+    "name": "default",
+    "driver": {
+      "type": "postgres",
+      "host": "localhost",
+      "port": 5432,
+      "username": "meh",
+      "password": "mehPassword12",
+      "database": "meh"
+    },
+    "autoSchemaSync": true,
+    "entities": [
+      "src/entities/*.js"
+    ],
+    "subscribers": [
+      "src/subscribers/*.js,"
+    ],
+    "migrations": [
+      "src/migrations/*.js"
+    ],
+    "cli": {
+      "entitiesDir": "src/entities",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+    }
+  }
+]

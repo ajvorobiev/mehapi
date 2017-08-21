@@ -5,24 +5,28 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "node index.js",
+    "start": "tsc && node index.js",
     "prestart:prod": "tsc",
     "start:prod": "node dist/server.js"
   },
   "author": "Alex Vorobiev",
   "license": "MIT",
   "dependencies": {
+    "@types/node": "^8.0.24",
     "@nestjs/common": "^3.0.0",
     "@nestjs/core": "^3.0.1",
     "@nestjs/microservices": "^3.0.1",
     "@nestjs/testing": "^3.0.0",
     "@nestjs/websockets": "^3.0.0",
+    "body-parser": "^1.17.2",
+    "pg": "6.2.4",
+    "pjson": "^1.0.8",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.3",
+    "typeorm": "0.0.9",
     "typescript": "^2.2.1"
   },
   "devDependencies": {
-    "@types/node": "^8.0.24",
     "ts-node": "^3.3.0"
   }
 }
