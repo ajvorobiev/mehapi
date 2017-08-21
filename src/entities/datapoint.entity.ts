@@ -1,8 +1,17 @@
 import { Entity, PrimaryColumn, Column } from "typeorm";
-import { Guid } from "guid";
+var Guid = require("guid");
 
 @Entity()
 export class Datapoint {
+
+    constructor(uuid?: string) {
+        if(uuid) {
+            this.id = uuid;
+        } else {
+             this.id = Guid.create().value;
+        }
+    }
+
     @PrimaryColumn("uuid")
     id: string;
 
