@@ -16,19 +16,22 @@ export class DatapointsService {
         return Promise.resolve(datapoints);
     }
 
-    getDatapoint(id: string) {
+    async getDatapoint(id: string) {
         // get a datapoint repository to perform operations with datapoint
         const datapointRepository = getEntityManager().getRepository(Datapoint);
 
-        const datapoint = datapointRepository.find((datapoint) => datapoint.id === id);
+        const datapoint = await datapointRepository.find((datapoint) => datapoint.id === id);
         if (!datapoint) {
             throw new HttpException("datapoint not found", 404);
         }
         return Promise.resolve(datapoint);
     }
     
-    addDatapoint(datapoint) {
-        //this.datapoints.push(datapoint);
-        return Promise.resolve();
+    async addDatapoint(datapoint) {
+        const datapointRepository = getEntityManager().getRepository(Datapoint);
+        
+        let savedDatapoint = await datapointRepository.persist(datapoint);
+
+        return Promise.resolve(savedDatapoint);
     }
 }

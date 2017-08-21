@@ -1,6 +1,8 @@
 import { Controller, Get, Post, HttpStatus } from '@nestjs/common';
 import { Response, Param, Dependencies, Body } from '@nestjs/common';
 import { DatapointsService } from "../components/datapoint.service";
+import { Datapoint } from "../entities/datapoint.entity";
+var Guid = require("guid");
 
 @Controller('datapoint')
 export class DatapointController {
@@ -23,7 +25,13 @@ export class DatapointController {
 
     @Post()
     async addDatapoint(@Response() res, @Body('datapoint') datapoint) {
-        const msg = await this.datapointsService.addDatapoint(datapoint);
+
+        let constructedDatapoint = new Datapoint();
+        constructedDatapoint.id = Guid.create().value;
+        constructedDatapoint.date = datapoint.date;
+        constructedDatapoint.value = datapoint.value;
+
+        const msg = await this.datapointsService.addDatapoint(constructedDatapoint);
         res.status(HttpStatus.CREATED).json(msg);
     }
 }
