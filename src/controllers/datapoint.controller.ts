@@ -1,8 +1,7 @@
-import { Controller, Get, Post, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, HttpStatus, Put, Delete } from '@nestjs/common';
 import { Response, Param, Dependencies, Body } from '@nestjs/common';
 import { DatapointsService } from "../components/datapoint.service";
 import { Datapoint } from "../entities/datapoint.entity";
-
 
 @Controller('datapoint')
 export class DatapointController {
@@ -25,12 +24,20 @@ export class DatapointController {
 
     @Post()
     async addDatapoint(@Response() res, @Body('datapoint') datapoint) {
-
-        let constructedDatapoint = new Datapoint();
-        constructedDatapoint.date = datapoint.date;
-        constructedDatapoint.value = datapoint.value;
-
-        const msg = await this.datapointsService.addDatapoint(constructedDatapoint);
+    
+        const msg = await this.datapointsService.addDatapoint(datapoint);
         res.status(HttpStatus.CREATED).json(msg);
+    }
+
+    @Put('/:id')
+    async editDatapoint(@Response() res, @Body('datapoint') datapoint, @Param('id') id) {
+        const msg = await this.datapointsService.editDatapoint(id, datapoint);
+        res.status(HttpStatus.OK).json(msg);
+    }
+
+    @Delete('/:id')
+    async deleteDatapoint(@Response() res, @Param('id') id) {
+        const msg = await this.datapointsService.deleteDatapoint(id);
+        res.status(HttpStatus.OK).json(msg);
     }
 }
