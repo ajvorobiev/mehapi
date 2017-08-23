@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'rm -r /var/mehapi/*'
+        sh 'rm -rf /var/mehapi/*'
         sh 'cp ./* /var/mehapi'
       }
     }
