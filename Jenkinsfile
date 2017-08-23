@@ -9,16 +9,18 @@ pipeline {
     stage('Build') {
       steps {
         sh 'npm install'
-      }
-    }
-    stage('Test') {
-      steps {
-        sh 'npm test'
+        sh 'tsc && npm build'
       }
     }
     stage('Deploy') {
       steps {
-        sh 'npm publish'
+        sh 'rm -r /var/mehapi/*'
+        sh 'cp ./* /var/mehapi'
+      }
+    }
+    stage('Run') {
+      steps {
+        sh 'tsc && node index.js'
       }
     }
   }
