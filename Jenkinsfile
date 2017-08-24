@@ -16,11 +16,12 @@ pipeline {
       steps {
         sh 'rm -rf /var/mehapi/*'
         sh 'cp -R ./* /var/mehapi'
+        sh 'supervisorctl stop mehapi'
       }
     }
     stage('Run') {
       steps {
-        sh 'tsc && node index.js'
+        sh 'supervisorctl start mehapi'
       }
     }
   }
