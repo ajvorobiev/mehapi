@@ -13,4 +13,4 @@ createConnection().then(async connection => {
     const app = NestFactory.create(ApplicationModule, instance);
     app.listen(3000, () => console.log('Application is listening on port 3000.'));
 
-}).catch(error => console.log("TypeORM connection error: ", error));
+}).catch(error => console.log("TypeORM connection error: # ", error));

@@ -14,9 +14,9 @@ pipeline {
     }
     stage('Deploy') {
       steps {
+        sh 'supervisorctl stop mehapi'
         sh 'rm -rf /var/mehapi/*'
         sh 'cp -R ./* /var/mehapi'
-        sh 'supervisorctl stop mehapi'
       }
     }
     stage('Run') {
