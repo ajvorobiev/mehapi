@@ -4,7 +4,6 @@ import { NestFactory } from '@nestjs/core';
 import { ApplicationModule } from './modules/app.module';
 import { createConnection } from "typeorm";
 import "reflect-metadata";
-import { ServerInfo } from "./entities/serverinfo.entity";
 import { ServerInfoService } from "./components/serverInfo.service";
 
 createConnection().then(async connection => {

@@ -1,18 +1,18 @@
 import { Component } from '@nestjs/common';
 import { HttpException } from '@nestjs/core';
 import { getEntityManager } from "typeorm";
-import { ServerInfo } from "../entities/serverInfo.entity";
+import { ServerInfoA } from "../entities/serverInfoA.entity";
 
 @Component()
 export class ServerInfoService {
     
     async updateServerInfo() {
-        const serverInfoRepository = getEntityManager().getRepository(ServerInfo);
+        const serverInfoRepository = getEntityManager().getRepository(ServerInfoA);
         
             let info = await serverInfoRepository.findOneById(1);
         
             if (!info) {
-                info = new ServerInfo();
+                info = new ServerInfoA();
                 info.name = "mehapi"
                 info.version = "0.1.0"
             }
@@ -23,7 +23,7 @@ export class ServerInfoService {
     }
 
     async getInfo() {
-        const infoRepository = getEntityManager().getRepository(ServerInfo);
+        const infoRepository = getEntityManager().getRepository(ServerInfoA);
         const info = await infoRepository.findOneById(1);
         return Promise.resolve(info);
     }

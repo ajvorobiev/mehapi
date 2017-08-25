@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column } from "typeorm";
 
 @Entity()
-export class ServerInfo {
+export class ServerInfoA {
 
     /**
      * Always 1
