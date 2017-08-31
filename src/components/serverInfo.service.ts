@@ -2,6 +2,7 @@ import { Component } from '@nestjs/common';
 import { HttpException } from '@nestjs/core';
 import { getEntityManager } from "typeorm";
 import { ServerInfoA } from "../entities/serverInfoA.entity";
+var pjson = require('../../package.json');
 
 @Component()
 export class ServerInfoService {
@@ -10,13 +11,15 @@ export class ServerInfoService {
         const serverInfoRepository = getEntityManager().getRepository(ServerInfoA);
         
             let info = await serverInfoRepository.findOneById(1);
-        
+                    
             if (!info) {
                 info = new ServerInfoA();
-                info.name = "mehapi"
-                info.version = "0.1.0"
+                
+                
             }
-        
+            
+            info.name = pjson.name;
+            info.version = pjson.version;
             info.bootTime = new Date();
         
             serverInfoRepository.persist(info);

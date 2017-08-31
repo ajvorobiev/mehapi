@@ -1,6 +1,6 @@
 {
   "name": "mehapi",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "API for MEH",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "@nestjs/testing": "^3.0.0",
     "@nestjs/websockets": "^3.0.0",
     "@types/node": "^8.0.24",
-	"express": "4.14.0",
+	  "express": "4.14.0",
     "body-parser": "^1.17.2",
     "guid": "0.0.12",
     "pg": "6.2.4",

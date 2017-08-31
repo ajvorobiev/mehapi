@@ -1,14 +1,13 @@
 import { Module, MiddlewaresConsumer, RequestMethod } from '@nestjs/common';
-import { DatapointController } from "../controllers/datapoint.controller";
 import { HomeController } from "../controllers/home.controller";
-import { DatapointsService } from "../components/datapoint.service";
 import { DatapointModule } from "./datapoint.module";
 import { LoggingMiddleware } from "../middleware/logging.middleware";
 import { ServerInfoService } from "../components/serverInfo.service";
+import { EventModule } from "./event.module";
 
 @Module({
     controllers: [HomeController],
-    modules: [DatapointModule],
+    modules: [DatapointModule, EventModule],
     components: [ServerInfoService]
 })
 export class ApplicationModule {
