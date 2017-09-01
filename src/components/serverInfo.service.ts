@@ -14,8 +14,6 @@ export class ServerInfoService {
                     
             if (!info) {
                 info = new ServerInfoA();
-                
-                
             }
             
             info.name = pjson.name;

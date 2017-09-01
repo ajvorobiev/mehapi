@@ -7,6 +7,9 @@ var Guid = require("guid");
 @Component()
 export class EventsService {
     
+    /**
+     * Gets all the events.
+     */
     async getAllEvents() {
          // get a event repository to perform operations with event
         const eventRepository = getEntityManager().getRepository(Event);
@@ -17,6 +20,10 @@ export class EventsService {
         return Promise.resolve(events);
     }
 
+    /**
+     * Gets an event by id.
+     * @param id The id of the event.
+     */
     async getEvent(id: string) {
         // get a event repository to perform operations with event
         const eventRepository = getEntityManager().getRepository(Event);
@@ -28,6 +35,10 @@ export class EventsService {
         return Promise.resolve(event);
     }
     
+    /**
+     * Adds an event.
+     * @param eventBody The json body of the event.
+     */
     async addEvent(eventBody: any) {
         const eventRepository = getEntityManager().getRepository(Event);
         
@@ -41,6 +52,11 @@ export class EventsService {
         return Promise.resolve(savedevent);
     }
 
+    /**
+     * Updates an event.
+     * @param id The id of the thing to be updated.
+     * @param eventBody The json body.
+     */
     async editEvent(id: string, eventBody: any) {
         const eventRepository = getEntityManager().getRepository(Event);
         
@@ -54,6 +70,10 @@ export class EventsService {
         return Promise.resolve(savedevent);
     }
 
+    /**
+     * Deletes an event.
+     * @param id The thing id.
+     */
     async deleteEvent(id: string) {
         const eventRepository = getEntityManager().getRepository(Event);
         const event = await eventRepository.findOneById(id);
